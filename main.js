@@ -712,7 +712,11 @@ class Router {
         // this.handler = new HashHandler(this.hashChangeHandler.bind(this));
         this.routes = routes;
         document.addEventListener("DOMContentLoaded", () => {
-            this.navigate(null);
+            const currentPath = window.location.pathname
+                .split("/")
+                .slice(2)
+                .join("/");
+            this.navigate(currentPath);
         });
     }
     hashChangeHandler() {
@@ -728,17 +732,23 @@ class Router {
         }
     }
     navigate(url) {
+        const pathnameApp = window.location.pathname
+            .split("/")
+            .slice(1, 1 + 1)
+            .join("/");
         const changedUrl = url || window.location.pathname.slice(1);
         console.log("navigate");
         // if (url) {
         console.log(changedUrl);
-        Router.setHistory(changedUrl);
+        Router.setHistory(`/${pathnameApp}/${changedUrl}`);
         // } else {
         // url = window.location.pathname.slice(1);
         // }
         // const urlString = window.location.pathname.slice(1);
         console.log(url);
-        const pageIndex = this.routes.findIndex((element) => element.path === changedUrl);
+        const pathParts = changedUrl.split("/");
+        // const route = this.routes.find((item) => item.path === pathParts[0]);
+        const pageIndex = this.routes.findIndex((element) => element.path === pathParts[0]);
         if (pageIndex === -1) {
             this.redirectToNotFoundPage();
         }
