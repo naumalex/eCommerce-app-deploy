@@ -728,7 +728,11 @@ class Router {
         }
     }
     navigate(url) {
-        const changedUrl = url || window.location.pathname.slice(1);
+        const changedUrl = url ||
+            /* window.location.pathname.slice(1) */ window.location.pathname
+                .split("/")
+                .slice(2)
+                .join("/");
         console.log("navigate");
         // if (url) {
         console.log(changedUrl);
