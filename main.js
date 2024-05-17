@@ -712,11 +712,7 @@ class Router {
         // this.handler = new HashHandler(this.hashChangeHandler.bind(this));
         this.routes = routes;
         document.addEventListener("DOMContentLoaded", () => {
-            const currentPath = window.location.pathname
-                .split("/")
-                .slice(3)
-                .join("/");
-            this.navigate(currentPath);
+            this.navigate(null);
         });
     }
     hashChangeHandler() {
@@ -727,32 +723,22 @@ class Router {
         console.log("popstate");
         console.log(window.location.pathname);
         if (window.location.pathname) {
-            const hash = window.location.pathname.slice(1);
+            const hash = window.location.pathname.split('/').slice(2).join('/');
             this.navigate(hash);
         }
     }
     navigate(url) {
-        const pathnameApp = window.location.pathname
-            .split("/")
-            .slice(1, 2 + 1)
-            .join("/");
         const changedUrl = url || window.location.pathname.slice(1);
         console.log("navigate");
         // if (url) {
         console.log(changedUrl);
-        window.history.pushState({}, "", `/${pathnameApp}/${changedUrl}`);
-        // Router.setHistory(`/${pathnameApp}/${changedUrl}`);
+        Router.setHistory(changedUrl);
         // } else {
         // url = window.location.pathname.slice(1);
         // }
         // const urlString = window.location.pathname.slice(1);
         console.log(url);
-        const pathParts = changedUrl.split("/");
-        console.log(pathParts[0]);
-        console.log(pathParts[1]);
-        // const route = this.routes.find((item) => item.path === pathParts[0]);
-        const pageIndex = this.routes.findIndex((element) => element.path === pathParts[0]);
-        console.log(pageIndex);
+        const pageIndex = this.routes.findIndex((element) => element.path === changedUrl);
         if (pageIndex === -1) {
             this.redirectToNotFoundPage();
         }
