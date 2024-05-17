@@ -747,8 +747,11 @@ class Router {
         // const urlString = window.location.pathname.slice(1);
         console.log(url);
         const pathParts = changedUrl.split("/");
+        console.log(pathParts[0]);
+        console.log(pathParts[1]);
         // const route = this.routes.find((item) => item.path === pathParts[0]);
         const pageIndex = this.routes.findIndex((element) => element.path === pathParts[0]);
+        console.log(pageIndex);
         if (pageIndex === -1) {
             this.redirectToNotFoundPage();
         }
