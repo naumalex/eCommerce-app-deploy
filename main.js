@@ -733,6 +733,7 @@ class Router {
                 .split("/")
                 .slice(2)
                 .join("/");
+        console.log(window.location.pathname.split("/"));
         console.log("navigate");
         // if (url) {
         console.log(changedUrl);
