@@ -723,7 +723,7 @@ class Router {
         console.log("popstate");
         console.log(window.location.pathname);
         if (window.location.pathname) {
-            const hash = window.location.pathname.split('/').slice(2).join('/');
+            const hash = window.location.pathname.split("/").slice(2).join("/");
             this.navigate(hash);
         }
     }
