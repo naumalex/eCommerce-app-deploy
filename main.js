@@ -714,7 +714,7 @@ class Router {
         document.addEventListener("DOMContentLoaded", () => {
             const currentPath = window.location.pathname
                 .split("/")
-                .slice(2)
+                .slice(3)
                 .join("/");
             this.navigate(currentPath);
         });
@@ -734,7 +734,7 @@ class Router {
     navigate(url) {
         const pathnameApp = window.location.pathname
             .split("/")
-            .slice(1, 1 + 1)
+            .slice(1, 2 + 1)
             .join("/");
         const changedUrl = url || window.location.pathname.slice(1);
         console.log("navigate");
