@@ -740,7 +740,8 @@ class Router {
         console.log("navigate");
         // if (url) {
         console.log(changedUrl);
-        Router.setHistory(`/${pathnameApp}/${changedUrl}`);
+        window.history.pushState({}, "", `/${pathnameApp}/${changedUrl}`);
+        // Router.setHistory(`/${pathnameApp}/${changedUrl}`);
         // } else {
         // url = window.location.pathname.slice(1);
         // }
